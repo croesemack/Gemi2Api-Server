@@ -293,7 +293,7 @@ async def get_gemini_client():
 	if gemini_client is None:
 		try:
 			gemini_client = GeminiClient(SECURE_1PSID, SECURE_1PSIDTS)
-			await gemini_client.init(timeout=300)
+			await gemini_client.init(timeout=3000)
 		except Exception as e:
 			logger.error(f"Failed to initialize Gemini client: {str(e)}")
 			raise HTTPException(status_code=500, detail=f"Failed to initialize Gemini client: {str(e)}")
@@ -307,7 +307,7 @@ async def create_chat_completion(request: ChatCompletionRequest, api_key: str = 
 		global gemini_client
 		if gemini_client is None:
 			gemini_client = GeminiClient(SECURE_1PSID, SECURE_1PSIDTS)
-			await gemini_client.init(timeout=300)
+			await gemini_client.init(timeout=3000)
 			logger.info("Gemini client initialized successfully")
 
 		# 转换消息为对话格式
